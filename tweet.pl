@@ -31,11 +31,11 @@ my $today = DateTime->now( time_zone => 'Asia/Taipei' )->truncate( to => 'day' )
 my $diff_seconds = $vote_date->epoch - $today->epoch();
 my $diff_days = int $diff_seconds/86400;
 
-my $msg = sprintf('離下次投票...大概還有 %d 天吧', $diff_days);
+my $msg = sprintf('離下次投票 %s ...還有 %d 天。', $vote_date->ymd("/"), $diff_days);
 if ($diff_days == 0) {
-    $msg = '投票日.... 不就是今天嗎';
+    $msg = '投票日.... 不就是今天嗎。';
 } elsif ($diff_days == 1) {
-    $msg = '投票日.... 是明天呢';
+    $msg = '投票日.... 是明天呢。';
 } elsif ( $diff_days < 0 ) {
     $msg = '離下次投票，倒底還有幾天呢...'
 }
