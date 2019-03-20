@@ -16,7 +16,7 @@ GetOptions(
 ($opts{c} && -f $opts{c}) or die "Your config does not exist.";
 my $config = YAML::LoadFile( $opts{c} );
 
-# 日期尚未公佈呢: https://www.cec.gov.tw/central/cms/108news/29941
+# 2020/01/11: https://www.cec.gov.tw/central/cms/108news/30126
 my $vote_date = DateTime->new(
     year      => '2020',
     month     => '1',
