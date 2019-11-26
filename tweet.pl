@@ -31,7 +31,13 @@ my $today = DateTime->now( time_zone => 'Asia/Taipei' )->truncate( to => 'day' )
 my $diff_seconds = $vote_date->epoch - $today->epoch();
 my $diff_days = int $diff_seconds/86400;
 
-my $msg = sprintf('離下次投票 %s ...還有 %d 天。', $vote_date->ymd("/"), $diff_days);
+my $msg = sprintf(
+    '離下次投票 %s ...還有 %d 天。' .
+    "\n\n\n" .
+    '#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票' ,
+    $vote_date->ymd("/"), $diff_days
+);
+
 if ($diff_days == 0) {
     $msg = '投票日.... 不就是今天嗎。';
 } elsif ($diff_days == 1) {
