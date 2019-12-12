@@ -34,6 +34,8 @@ my $diff_days = int $diff_seconds/86400;
 my $msg = sprintf(
     '離下次投票 %s ...還有 %d 天。' .
     "\n\n\n" .
+    '#記得去投票' .
+    "\n\n" .
     '#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票' ,
     $vote_date->ymd("/"), $diff_days
 );
