@@ -50,21 +50,21 @@ if ($opts{"fake-today"}) {
 my $diff_seconds = $vote_date->epoch - $today->epoch();
 my $diff_days = int $diff_seconds/86400;
 
-my $msg = sprintf(
-    '離下次投票 %s ...還有 %d 天。' .
-    "\n\n\n" .
-    '#記得去投票' .
-    "\n\n" .
-    '#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票' ,
-    $vote_date->ymd("/"), $diff_days
-);
+exit(0) if $diff_days < -1;
 
-if ($diff_days == 0) {
-    $msg = '投票日.... 不就是今天嗎。';
+my $hashtags = "\n\n#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票";
+my $msg;
+if ($diff_days > 1) {
+    $msg = sprintf(
+        '離下次投票 %s ... 還有 %d 天。',
+        $vote_date->ymd("/"), $diff_days
+    );
 } elsif ($diff_days == 1) {
-    $msg = '投票日.... 是明天呢。';
-} elsif ( $diff_days < 0 ) {
-    $msg = '離下次投票，倒底還有幾天呢...'
+    $msg = '投票日... 就是明天呢。' . "\n\n\n#記得去投票" . $hashtags;
+} elsif ($diff_days == 0) {
+    $msg = '投票日... 不就是今天嗎。' . "\n\n\n#你投票了嗎" . $hashtags;
+} elsif ($diff_days == -1) {
+    $msg = '投票日倒數完畢... 總算可以下班了。';
 }
 
 say encode_utf8($msg);
@@ -83,5 +83,5 @@ if ($opts{y}) {
     $twitter->update($msg);
 }
 else {
-    say "Not Tweeting";
+    say "\n----\nNot Tweeting";
 }
