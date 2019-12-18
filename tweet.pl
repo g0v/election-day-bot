@@ -9,6 +9,7 @@ use DateTime;
 my %opts;
 GetOptions(
     \%opts,
+    'fake-today=s',
     'c=s',
     'y|yes'
 ) or die("Error in arguments, but I'm not telling you what it is.");
@@ -28,6 +29,24 @@ my $vote_date = DateTime->new(
 );
 
 my $today = DateTime->now( time_zone => 'Asia/Taipei' )->truncate( to => 'day' );
+
+if ($opts{"fake-today"}) {
+    my @ymd = split /[\/\-]/, $opts{"fake-today"};
+    if (@ymd == 3) {
+        $today = DateTime->new(
+            year      => $ymd[0],
+            month     => $ymd[1],
+            day       => $ymd[2],
+            hour      => '0',
+            minute    => '0',
+            second    => '0',
+            time_zone => 'Asia/Taipei',
+        );
+    } else {
+        die "Unknown date format in `--fake-today`. Try: 2020/01/11"
+    }
+}
+
 my $diff_seconds = $vote_date->epoch - $today->epoch();
 my $diff_days = int $diff_seconds/86400;
 
