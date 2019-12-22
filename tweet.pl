@@ -53,11 +53,21 @@ my $diff_days = int $diff_seconds/86400;
 exit(0) if $diff_days < -1;
 
 my $hashtags = "\n\n#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票";
+my %specials = (
+    19 => '#總統要投幾號呢？🤔',
+    18 => '#立委要投誰呢？🤔',
+    17 => '#政黨票投給哪一黨好呢？🤔',
+    5  => '#機票買了沒？✈',
+    4  => '#車票買了沒？🚄',
+);
+@specials{16,15,14,13,12,11,10,9,8,7,6} = (@specials{19,18,17})x4;
+
 my $msg;
 if ($diff_days > 1) {
+    my $sp = $specials{$diff_days} // '#記得去投票';
     $diff_days =~ tr/0123456789/０１２３４５６７８９/;
     $msg = sprintf('離下次投票 %s ... 還有 %s 天。', $vote_date->ymd("/"), $diff_days);
-    $msg .= "\n\n\n#記得去投票" . $hashtags;
+    $msg .= "\n\n\n$sp" . $hashtags;
 } elsif ($diff_days == 1) {
     $msg = '投票日... 就是明天呢。' . "\n\n\n#記得去投票" . $hashtags;
 } elsif ($diff_days == 0) {
