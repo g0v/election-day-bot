@@ -55,10 +55,8 @@ exit(0) if $diff_days < -1;
 my $hashtags = "\n\n#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票";
 my $msg;
 if ($diff_days > 1) {
-    $msg = sprintf(
-        '離下次投票 %s ... 還有 %d 天。',
-        $vote_date->ymd("/"), $diff_days
-    );
+    $msg = sprintf('離下次投票 %s ... 還有 %d 天。', $vote_date->ymd("/"), $diff_days);
+    $msg .= "\n\n\n#記得去投票" . $hashtags;
 } elsif ($diff_days == 1) {
     $msg = '投票日... 就是明天呢。' . "\n\n\n#記得去投票" . $hashtags;
 } elsif ($diff_days == 0) {
