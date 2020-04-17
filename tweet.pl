@@ -17,11 +17,11 @@ GetOptions(
 ($opts{c} && -f $opts{c}) or die "Your config does not exist.";
 my $config = YAML::LoadFile( $opts{c} );
 
-# 2020/01/11: https://www.cec.gov.tw/central/cms/108news/30126
+# 2020/06/06: http://www.cec.gov.tw/central/cms/109news/32996
 my $vote_date = DateTime->new(
     year      => '2020',
-    month     => '1',
-    day       => '11',
+    month     => '6',
+    day       => '6',
     hour      => '0',
     minute    => '0',
     second    => '0',
@@ -52,26 +52,16 @@ my $diff_days = int $diff_seconds/86400;
 
 exit(0) if $diff_days < -1;
 
-my $hashtags = "\n\n#TaiwanElection #TaiwanVotes #Taiwan2020 #台灣選舉 #台灣投票";
-my %specials = (
-    19 => '#總統要投幾號呢？🤔',
-    18 => '#立委要投誰呢？🤔',
-    17 => '#政黨票投給哪一黨好呢？🤔',
-    5  => '#機票買了沒？✈',
-    4  => '#車票買了沒？🚄',
-);
-@specials{16,15,14,13,12,11,10,9,8,7,6} = (@specials{19,18,17})x4;
+my $hashtags = "#高雄市第3屆市長韓國瑜罷免案\n#台灣投票 #TaiwanVotes";
 
 my $msg;
 if ($diff_days > 1) {
-    my $sp = $specials{$diff_days} // '#記得去投票';
-    $diff_days =~ tr/0123456789/０１２３４５６７８９/;
     $msg = sprintf('離下次投票 %s ... 還有 %s 天。', $vote_date->ymd("/"), $diff_days);
-    $msg .= "\n\n\n$sp" . $hashtags;
+    $msg .= "\n\n\n" . $hashtags;
 } elsif ($diff_days == 1) {
-    $msg = '投票日... 就是明天呢。' . "\n\n\n#記得去投票" . $hashtags;
+    $msg = '投票日... 就是明天呢。' . "\n\n\n#記得去投票\n" . $hashtags;
 } elsif ($diff_days == 0) {
-    $msg = '投票日... 不就是今天嗎。' . "\n\n\n#你投票了嗎" . $hashtags;
+    $msg = '投票日... 不就是今天嗎。' . "\n\n\n#你投票了嗎\n" . $hashtags;
 } elsif ($diff_days == -1) {
     $msg = '投票日倒數完畢... 總算可以下班了。';
 }
