@@ -17,11 +17,11 @@ GetOptions(
 ($opts{c} && -f $opts{c}) or die "Your config does not exist.";
 my $config = YAML::LoadFile( $opts{c} );
 
-# 2020/06/06: http://www.cec.gov.tw/central/cms/109news/32996
+# 2020/08/15: https://www.cec.gov.tw/central/cms/109news/33448
 my $vote_date = DateTime->new(
     year      => '2020',
-    month     => '6',
-    day       => '6',
+    month     => '8',
+    day       => '15',
     hour      => '0',
     minute    => '0',
     second    => '0',
@@ -52,7 +52,7 @@ my $diff_days = int $diff_seconds/86400;
 
 exit(0) if $diff_days < -1;
 
-my $hashtags = "#高雄市第3屆市長韓國瑜罷免案\n#台灣投票 #TaiwanVotes";
+my $hashtags = "#高雄市第3屆市長補選\n#台灣投票 #TaiwanVotes";
 
 my $msg;
 if ($diff_days > 1) {
