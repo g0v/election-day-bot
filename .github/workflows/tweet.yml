@@ -11,5 +11,6 @@ jobs:
       image: 'ghcr.io/gugod/election-day-bot:latest'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: local post
         run: perl tweet.pl
