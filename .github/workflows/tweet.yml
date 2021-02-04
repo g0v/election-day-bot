@@ -12,5 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: 5.32
+      - run: cpanm -q --notest --no-man-pages --installdeps .
       - name: local post
         run: perl tweet.pl
