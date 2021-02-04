@@ -9,6 +9,7 @@ jobs:
   tweet:
     container:
       image: 'ghcr.io/gugod/election-day-bot:latest'
+    runs-on: ubuntu-latest
     steps:
       - name: local post
         run: perl tweet.pl
