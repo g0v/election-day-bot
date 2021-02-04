@@ -7,9 +7,8 @@ on:
 
 jobs:
   tweet:
-    runs-on: ubuntu-latest
+    container:
+      image: 'ghcr.io/gugod/election-day-bot:latest'
     steps:
-    - name: local post
-      uses: mosteo-actions/docker-run@v1
-      with:
-        image: 'docker://ghcr.io/gugod/election-day-bot:latest'
+      - name: local post
+        run: perl tweet.pl
