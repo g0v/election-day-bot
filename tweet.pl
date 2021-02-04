@@ -14,8 +14,10 @@ GetOptions(
     'y|yes'
 ) or die("Error in arguments, but I'm not telling you what it is.");
 
-($opts{c} && -f $opts{c}) or die "Your config does not exist.";
-my $config = YAML::LoadFile( $opts{c} );
+my $config;
+if ($opts{c} && -f $opts{c}) {
+    $config = YAML::LoadFile( $opts{c} );
+}
 
 # 2021/02/06: https://www.cec.gov.tw/central/cms/110news/34965
 my $hashtags = "#高雄市議員黃捷罷免案\n#台灣投票 #TaiwanVotes";
@@ -67,7 +69,7 @@ if ($diff_days > 1) {
 
 say encode_utf8($msg);
 
-if ($opts{y}) {
+if ($opts{y} && $config) {
     say "Tweet for real";
     my $twitter = Net::Twitter->new(
         ssl => 1,
