@@ -13,7 +13,3 @@ jobs:
       - run: cpanm -q --notest --no-man-pages --installdeps .
       - name: local post
         run: perl tweet.pl
-      - name: real post
-        env:
-          TWITTER_TOKENS: ${{ secrets.TWITTER_TOKENS }}
-        run: perl tweet.pl -y --github-secret
