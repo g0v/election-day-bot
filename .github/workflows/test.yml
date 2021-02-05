@@ -1,8 +1,7 @@
-name: Tweet
+name: Test
 
 on:
-  schedule:
-  - cron: '1 0 * * *'
+  push:
 
 jobs:
   tweet:
@@ -11,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: release
       - run: cpanm -q --notest --no-man-pages --installdeps .
-      - name: secret
+      - name: local post
+        run: perl tweet.pl
       - name: real post
-        run: perl tweet.pl -x
+        run: perl tweet.pl --github-secret -y
