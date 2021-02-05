@@ -14,4 +14,6 @@ jobs:
       - name: local post
         run: perl tweet.pl
       - name: real post
-        run: perl tweet.pl --github-secret -y
+        env:
+          TWITTER_TOKENS: ${{ secrets.TWITTER_TOKENS }}
+        run: perl tweet.pl -y --github-secret
