@@ -20,7 +20,7 @@
 的發出推文，否則只會在畫面上顯示出推文內容。
 
     # 顯示
-    perl tweet.pl -c twitter.yml
+    perl tweet.pl
 
     # 顯示 + 發文
     perl tweet.pl -c twitter.yml -y
@@ -31,5 +31,16 @@
 
     CRON_TZ=Asia/Taipei
     1 0 * * * perl /app/tweet.pl -c /app/twitter.yml -y
+
+## 於 GitHub Action 中執行
+
+執行檔 `tweet.pl` 可接受 `--github-secret` 旗標，表示 twitter token 存
+在於 GitHub Action 提供的環境變數 `TWITTER_TOKENS` 當中。便於讓此機器
+人於 GitHub Action 中運行。
+
+秘值 `TWITTER_TOKENS` 內容需與 `twitter.yml` 內容相同，且事先添加於
+GitHub repo 設定當中。
+
+實際運作的 Workflow 為： `.github/workflows/tweet.yml`
 
 [1]: https://twitter.com/ElectionDay_bot
