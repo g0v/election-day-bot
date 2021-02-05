@@ -26,12 +26,12 @@ if ($opts{c} && -f $opts{c}) {
     say "[INFO] No config -- dryrun.";
 }
 
-# 2021/02/06: https://www.cec.gov.tw/central/cms/110news/34965
-my $hashtags = "#高雄市議員黃捷罷免案\n#台灣投票 #TaiwanVotes";
+# 2021/08/28: https://www.cec.gov.tw/central/cms/110news/34920
+my $hashtags = "#全國性公民投票\n#台灣投票\n#TaiwanVotes";
 my $vote_date = DateTime->new(
     year      => '2021',
-    month     => '2',
-    day       => '6',
+    month     => '8',
+    day       => '28',
     hour      => '0',
     minute    => '0',
     second    => '0',
