@@ -1,0 +1,20 @@
+name: Tweet
+
+on:
+  schedule:
+  - cron: '1 0 * * *'
+
+jobs:
+  tweet:
+    container:
+      image: perl:5.32
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: release
+      - run: cpanm -q --notest --no-man-pages --installdeps .
+      - name: real post
+        env:
+          TWITTER_TOKENS: ${{ secrets.TWITTER_TOKENS }}
+        run: perl tweet.pl -y --github-secret

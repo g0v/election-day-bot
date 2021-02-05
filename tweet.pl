@@ -10,13 +10,20 @@ my %opts;
 GetOptions(
     \%opts,
     'fake-today=s',
+    'github-secret',
     'c=s',
     'y|yes'
 ) or die("Error in arguments, but I'm not telling you what it is.");
 
 my $config;
 if ($opts{c} && -f $opts{c}) {
+    say "[INFO] Loading config from $opts{c}";
     $config = YAML::LoadFile( $opts{c} );
+} elsif ($opts{'github-secret'} && $ENV{'TWITTER_TOKENS'}) {
+    say "[INFO] Loading config from env";
+    $config = YAML::Load($ENV{'TWITTER_TOKENS'});
+} else {
+    say "[INFO] No config -- dryrun.";
 }
 
 # 2021/02/06: https://www.cec.gov.tw/central/cms/110news/34965
