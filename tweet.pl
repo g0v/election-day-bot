@@ -18,8 +18,8 @@ GetOptions(
 my $config;
 if ($opts{c} && -f $opts{c}) {
     $config = YAML::LoadFile( $opts{c} );
-} elsif ($opts{'github-secret'} && $ENV{'GITHUB_TWITTER_TOKENS'}) {
-    $config = YAML::Load($ENV{'GITHUB_TWITTER_TOKENS'});
+} elsif ($opts{'github-secret'} && $ENV{'TWITTER_TOKENS'}) {
+    $config = YAML::Load($ENV{'TWITTER_TOKENS'});
 }
 
 # 2021/02/06: https://www.cec.gov.tw/central/cms/110news/34965

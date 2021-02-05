@@ -15,4 +15,6 @@ jobs:
           ref: release
       - run: cpanm -q --notest --no-man-pages --installdeps .
       - name: real post
+        env:
+          TWITTER_TOKENS: ${{ secrets.TWITTER_TOKENS }}
         run: perl tweet.pl -y --github-secret
