@@ -14,6 +14,5 @@ jobs:
         with:
           ref: release
       - run: cpanm -q --notest --no-man-pages --installdeps .
-      - name: secret
       - name: real post
-        run: perl tweet.pl -x
+        run: perl tweet.pl -y --github-secret
