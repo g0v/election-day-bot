@@ -77,7 +77,7 @@ sub build_countdown_message ($today, $votes) {
     my $hashtags .= "\#${title}\n\n#台灣投票\n#TaiwanVotes";
     if ($diff_days > 1) {
         if ($just_finished) {
-            $msg = "接著開始倒數下次投票日。將於 " . $vote_date->ymd("/") . " 舉辦的：\n\n    $title。\n\n詳見： $url";
+            $msg = "接著開始倒數下次投票日。將於 " . $vote_date->ymd("/") . " 舉辦的：\n\n    $title\n\n詳見： $url";
         } else {
             $msg = "離下次投票 " . $vote_date->ymd("/") . " ... 還有 $diff_days 天。\n\n" . $hashtags;
         }
