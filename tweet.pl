@@ -3,7 +3,7 @@ use warnings;
 use feature 'signatures';
 use utf8;
 
-use Net::Twitter;
+use Twitter::API;
 use YAML;
 use DateTime;
 use Encode ('encode_utf8');
@@ -132,16 +132,15 @@ sub maybe_tweet_update ($opts, $msg) {
 
     if ($opts->{y} && $config) {
         say "#=> Tweet for real";
-        my $twitter = Net::Twitter->new(
-            ssl => 1,
-            traits => [ 'API::RESTv1_1' ],
+        my $twitter = Twitter::API->new_with_traits(
+            traits => "Enchilada",
             consumer_key        => $config->{consumer_key},
             consumer_secret     => $config->{consumer_secret},
             access_token        => $config->{access_token},
             access_token_secret => $config->{access_token_secret},
         );
-
-        $twitter->update($msg);
+        my $r = $twitter->update($msg);
+        say "https://twitter.com/" . $r->{"user"}{"screen_name"} . "/status/" . $r->{id_str};
     } else {
         say "#=> Not tweeting";
     }

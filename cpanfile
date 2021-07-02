@@ -1,4 +1,4 @@
-requires 'Net::Twitter';
+requires 'Twitter::API';
 requires 'YAML';
 requires 'Encode';
 requires 'DateTime';
