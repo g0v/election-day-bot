@@ -34,7 +34,7 @@ sub main {
         # 2. https://www.cec.gov.tw/central/cms/110news/35412
         ["2021/07/02", undef, undef],
 
-        ["2021/08/28", "第10屆立法委員（臺中市第2選舉區）陳柏惟罷免案", "https://www.cec.gov.tw/central/cms/110news/34920"],
+        ["2021/08/28", "第10屆立法委員臺中市第2選舉區陳柏惟罷免案", "https://www.cec.gov.tw/central/cms/110news/34920"],
         ["2021/12/18", "全國性公民投票", "https://www.cec.gov.tw/central/cms/110news/35412"],
     );
 
