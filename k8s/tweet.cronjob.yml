@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: tweet-taiwan-election-day-countdown
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: twitter-token
+              secret:
+                secretName: taiwan-election-day-bot-twitter-token
+          containers:
+            - name: election-day-bot
+              image: gugod/election-day-bot:latest
+              command:
+                - perl
+                - /app/tweet.pl
+                - '-c'
+                - /app/secrets/twitter-token.yml
+                - '--yes'
+              volumeMounts:
+                - name: twitter-token
+                  mountPath: /app/secrets
+                  readOnly: true
+          restartPolicy: Never
