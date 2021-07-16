@@ -1,9 +1,10 @@
 apiVersion: batch/v1
-kind: CronJob
+kind: TZCronJob
 metadata:
   name: tweet-taiwan-election-day-countdown
 spec:
-  schedule: "0 * * * *"
+  schedule: "0 8 * * *"
+  timezone: "Asia/Taipei"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2
