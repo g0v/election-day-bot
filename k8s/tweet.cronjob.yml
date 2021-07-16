@@ -1,4 +1,4 @@
-apiVersion: batch/v1
+apiVersion: cronjobber.hidde.co/v1alpha1
 kind: TZCronJob
 metadata:
   name: tweet-taiwan-election-day-countdown
