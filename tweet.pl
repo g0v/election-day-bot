@@ -34,6 +34,7 @@ sub main {
         ["2022/01/09", "立法委員臺中市第2選舉區缺額補選", "https://www.cec.gov.tw/central/cms/110news/35853"],
         ["2022/01/09", "第10屆立法委員林昶佐罷免案", "https://web.cec.gov.tw/central/cms/110news/36048"],
         ["2022/11/26", "地方公職人員選舉", "https://www.cec.gov.tw/central/cms/111news/36291"],
+        ["2022/11/26", "111年憲法修正案之複決案", "https://www.cec.gov.tw/central/cms/111news/36606"],
     );
 
     my $msg = build_countdown_message( $today, \@votes );
